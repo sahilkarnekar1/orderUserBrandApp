@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../api.js";
 
 const HomePage = () => {
   const [drinksWithShops, setDrinksWithShops] = useState([]);
@@ -18,7 +19,7 @@ const HomePage = () => {
 
           try {
             const response = await axios.get(
-              `https://orderbackend-1.onrender.com/api/nearest-shops?latitude=37.7750&longitude=-122.4365`,
+              `${API_BASE_URL}/api/nearest-shops`,
               {
                 params: { latitude, longitude },
               }
@@ -74,7 +75,7 @@ const HomePage = () => {
 
       // Send the request to create the order
       const response = await axios.post(
-        "https://orderbackend-1.onrender.com/api/orders/create-orders",
+        `${API_BASE_URL}/api/orders/create-orders`,
         {
           items: [
             {
