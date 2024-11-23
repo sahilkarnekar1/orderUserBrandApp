@@ -121,7 +121,7 @@ const HomePage = () => {
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 cursor: "pointer",
               }}
-              onClick={() => handleOrderCreation(drinkData)}
+              
             >
               <h3>{drinkData.shopName}</h3>
               <p>
@@ -145,6 +145,8 @@ const HomePage = () => {
               <p>
                 <strong>Price:</strong> ${drinkData.drinkPrice}
               </p>
+              <button onClick={() => handleOrderCreation(drinkData)}> Order Now</button>
+              <button > Add To Cart</button>
             </div>
           ))}
         </div>
