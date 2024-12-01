@@ -21,7 +21,7 @@ const UpdateLocation = () => {
   return (
     <div>
       <h2>Update Location</h2>
-      <button onClick={handleUpdateLocation}>Update Location</button>
+      <button className='buttonInputwidthFull' onClick={handleUpdateLocation}>Update Location</button>
       <p>Current Location: {location.latitude}, {location.longitude}</p>
     </div>
   );

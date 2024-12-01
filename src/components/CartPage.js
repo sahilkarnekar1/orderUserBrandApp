@@ -67,21 +67,32 @@ const CartPage = () => {
           quantity: item.quantity,
         })),
       };
-      console.log('Order data:', orderData);
-      const response = await axios.post(`${API_BASE_URL}/api/orders/create-orders`, orderData, {
+  
+      // Place order
+      const orderResponse = await axios.post(`${API_BASE_URL}/api/orders/create-orders`, orderData, {
         headers: {
           "x-auth-token": token,
         },
       });
-      console.log('Order placed successfully:', response.data);
+      console.log('Order placed successfully:', orderResponse.data);
       alert('Order placed successfully!');
-      // Optionally, clear the cart after placing an order
+  
+      // Clear cart in database
+      const clearCartResponse = await axios.delete(`${API_BASE_URL}/api/cart/clear-cart`, {
+        headers: {
+          "x-auth-token": token,
+        },
+      });
+      console.log('Cart cleared:', clearCartResponse.data.message);
+  
+      // Clear cart in frontend
       setCartItems([]);
     } catch (error) {
-      console.error('Failed to place order:', error.response?.data?.message || error.message);
+      console.error('Error placing order or clearing cart:', error.response?.data?.message || error.message);
       alert('Failed to place order. Please try again.');
     }
   };
+  
 
   // Fetch items on component mount
   useEffect(() => {

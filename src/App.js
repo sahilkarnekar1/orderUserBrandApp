@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Register from './components/Register';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
@@ -11,6 +13,7 @@ import CartPage from './components/CartPage';
 
 function App() {
   return (
+<>
     <Router>
       <Routes>
         <Route path="/" element={<Register />} />
@@ -22,6 +25,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
       </Routes>
     </Router>
+        <ToastContainer />
+        </>
   );
 }
 

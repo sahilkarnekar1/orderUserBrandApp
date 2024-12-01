@@ -21,11 +21,11 @@ navigate("/login")
   return (
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
-      <input type="text" placeholder="Full Name" value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} required />
-      <input type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
-      <input type="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required />
-      <button type="submit">Register</button>
-      <button onClick={handleNavigateLogin}>Login</button>
+      <input className='buttonInputwidthFull' type="text" placeholder="Full Name" value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} required />
+      <input className='buttonInputwidthFull' type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
+      <input className='buttonInputwidthFull' type="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required />
+      <button className='buttonInputwidthFull' type="submit">Register</button>
+      <button className='buttonInputwidthFull' onClick={handleNavigateLogin}>Login</button>
     </form>
   );
 };

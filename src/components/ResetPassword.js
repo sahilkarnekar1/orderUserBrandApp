@@ -19,8 +19,8 @@ const ResetPassword = () => {
   return (
     <form onSubmit={handleReset}>
       <h2>Reset Password</h2>
-      <input type="password" placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
-      <button type="submit">Reset Password</button>
+      <input className='buttonInputwidthFull' type="password" placeholder="New Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+      <button className='buttonInputwidthFull' type="submit">Reset Password</button>
     </form>
   );
 };

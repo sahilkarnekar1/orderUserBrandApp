@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '', latitude: '', longitude: '' });
@@ -15,6 +16,7 @@ const Login = () => {
         console.log('Login Successful');
         localStorage.setItem('token', response.data.token);
         navigate('/homepage')
+        toast.success('Login Successful');
       });
     } catch (error) {
       alert(error.response?.data?.msg || 'Login failed');
@@ -29,11 +31,11 @@ const Login = () => {
   return (
     <form onSubmit={handleLogin}>
       <h2>Login</h2>
-      <input type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
-      <input type="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required />
-      <button type="submit">Login</button>
+      <input className='buttonInputwidthFull' type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
+      <input className='buttonInputwidthFull' type="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required />
+      <button className='buttonInputwidthFull' type="submit">Login</button>
       <h4 onClick={handleForgotPass}>Forgot Password</h4>
-      <button onClick={handleNavigateRegister}>Register</button>
+      <button className='buttonInputwidthFull' onClick={handleNavigateRegister}>Register</button>
     </form>
   );
 };
