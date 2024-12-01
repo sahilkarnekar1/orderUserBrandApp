@@ -7,6 +7,7 @@ import ResetPassword from './components/ResetPassword';
 import UpdateLocation from './components/UpdateLocation';
 import './App.css';
 import HomePage from './components/HomePage';
+import CartPage from './components/CartPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/update-location" element={<UpdateLocation />} />
         <Route path="/homepage" element={<HomePage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </Router>
   );

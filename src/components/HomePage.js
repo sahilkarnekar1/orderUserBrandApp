@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../api.js";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [drinksWithShops, setDrinksWithShops] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   // Fetch nearest shops when the component mounts
   useEffect(() => {
@@ -103,8 +105,43 @@ const HomePage = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
+  const handleAddToCart = async (drink) => {
+    console.log(drink);
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/api/cart/add-to-cart`,
+        {
+          // Request body
+          drinkId: drink.drinkId,
+          quantity: 1,
+        },
+        {
+          // Configuration object
+          headers: {
+            "x-auth-token": token,
+          },
+        }
+      );
+  
+      if (response.status === 200) {
+        console.log(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        console.error('Error Response:', error.response.data.message || error.message);
+      }
+    }
+  };
+  
+const handleNavigateCart = () => {
+  navigate("/cart");
+}
+
   return (
     <div>
+      <h3 onClick={handleNavigateCart}>Cart</h3>
       <h2>Available Drinks</h2>
       {drinksWithShops.length === 0 ? (
         <p>No drinks found nearby.</p>
@@ -146,7 +183,7 @@ const HomePage = () => {
                 <strong>Price:</strong> ${drinkData.drinkPrice}
               </p>
               <button onClick={() => handleOrderCreation(drinkData)}> Order Now</button>
-              <button > Add To Cart</button>
+              <button onClick={() => handleAddToCart(drinkData)} > Add To Cart</button>
             </div>
           ))}
         </div>
