@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../api.js";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
   const [drinksWithShops, setDrinksWithShops] = useState([]);
@@ -94,7 +95,7 @@ const HomePage = () => {
       );
 
       if (response.status === 201) {
-        alert("Order created successfully!");
+        toast.success("Order created successfully!");
       }
     } catch (err) {
       console.error("Error creating order:", err);
@@ -125,7 +126,7 @@ const HomePage = () => {
       );
   
       if (response.status === 200) {
-        console.log(response.data.message);
+        toast.success(response.data.message);
       }
     } catch (error) {
       console.log(error);

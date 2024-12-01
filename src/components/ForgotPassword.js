@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { forgotPassword } from '../api';
+import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     try {
       await forgotPassword({ email });
-      alert('Password reset link sent to your email');
+      toast.success('Password reset link sent to your email');
     } catch (error) {
       alert(error.response?.data?.msg || 'Failed to send password reset link');
     }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { resetPassword } from '../api';
+import { toast } from 'react-toastify';
 
 const ResetPassword = () => {
   const { token } = useParams();
@@ -10,7 +11,7 @@ const ResetPassword = () => {
     e.preventDefault();
     try {
       await resetPassword(token, { newPassword });
-      alert('Password reset successfully');
+      toast.success('Password reset successfully');
     } catch (error) {
       alert(error.response?.data?.msg || 'Password reset failed');
     }

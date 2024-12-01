@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { updateLocation } from '../api';
+import { toast } from 'react-toastify';
 
 const UpdateLocation = () => {
   const [location, setLocation] = useState({ latitude: '', longitude: '' });
@@ -11,7 +12,7 @@ const UpdateLocation = () => {
         const { latitude, longitude } = position.coords;
         setLocation({ latitude, longitude });
         await updateLocation({ token, latitude, longitude });
-        alert('Location updated successfully');
+        toast.success('Location updated successfully');
       });
     } catch (error) {
       alert(error.response?.data?.msg || 'Location update failed');

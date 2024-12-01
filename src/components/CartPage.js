@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../api';
+import {toast} from "react-toastify";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -29,6 +30,7 @@ const CartPage = () => {
         },
       });
       console.log(response.data.message);
+      toast.success(response.data.message);
       // Re-fetch cart items after removal
       fetchCartItems();
     } catch (error) {
@@ -75,7 +77,7 @@ const CartPage = () => {
         },
       });
       console.log('Order placed successfully:', orderResponse.data);
-      alert('Order placed successfully!');
+      toast.success('Order placed successfully!');
   
       // Clear cart in database
       const clearCartResponse = await axios.delete(`${API_BASE_URL}/api/cart/clear-cart`, {
@@ -84,7 +86,7 @@ const CartPage = () => {
         },
       });
       console.log('Cart cleared:', clearCartResponse.data.message);
-  
+  toast.success(clearCartResponse.data.message);
       // Clear cart in frontend
       setCartItems([]);
     } catch (error) {
