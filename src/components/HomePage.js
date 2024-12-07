@@ -3,6 +3,7 @@ import axios from "axios";
 import { API_BASE_URL } from "../api.js";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import {ShoppingCartOutlined} from '@ant-design/icons';
 
 const HomePage = () => {
   const [drinksWithShops, setDrinksWithShops] = useState([]);
@@ -142,7 +143,8 @@ const handleNavigateCart = () => {
 
   return (
     <div>
-      <h3 onClick={handleNavigateCart}>Cart</h3>
+      <h3 onClick={handleNavigateCart}>Cart :  <ShoppingCartOutlined /></h3>
+     
       <h2>Available Drinks</h2>
       {drinksWithShops.length === 0 ? (
         <p>No drinks found nearby.</p>
@@ -184,7 +186,7 @@ const handleNavigateCart = () => {
                 <strong>Price:</strong> ${drinkData.drinkPrice}
               </p>
               <button onClick={() => handleOrderCreation(drinkData)}> Order Now</button>
-              <button onClick={() => handleAddToCart(drinkData)} > Add To Cart</button>
+              <button onClick={() => handleAddToCart(drinkData)} > Add To Cart  <ShoppingCartOutlined /></button>
             </div>
           ))}
         </div>
