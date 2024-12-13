@@ -136,14 +136,9 @@ const HomePage = () => {
       }
     }
   };
-  
-const handleNavigateCart = () => {
-  navigate("/cart");
-}
 
   return (
     <div>
-      <h3 onClick={handleNavigateCart}>Cart :  <ShoppingCartOutlined /></h3>
      
       <h2>Available Drinks</h2>
       {drinksWithShops.length === 0 ? (
